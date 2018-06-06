@@ -21,15 +21,12 @@
             </feature>
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/*">
-            <uses-permission android:name="android.permission.INTERNET" />
-            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-            <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-            <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-            <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
         </config-file>
 
-        <lib-file src="src/android/libs/esptouch-v0.3.6.2.jar" />
+        <lib-file src="src/android/AlivcPlayer-3.4.5.aar" />
+        <lib-file src="src/android/AlivcReporter-1.1.aar" />
 
         <source-file src="src/android/SJPlayerPlugin.java" target-dir="src/com/fhsjdz/cordova/utils" />
     </platform>
@@ -41,10 +38,9 @@
                 <param name="ios-package" value="SJPlayerPlugin"/>
             </feature>
         </config-file>
-        <framework src="CoreGraphics.framework" weak="true"/>
-        <framework src="UIKit.framework" weak="true"/>
-        <framework src="Foundation.framework" weak="true"/>
-        <framework src="SystemConfiguration.framework" weak="true" />
+        <resource-file src="src/ios/AliyunLanguageSource.bundle"/>
+        <framework src="src/ios/AliThirdparty.framework" custom="true" weak="true" />
+        <framework src="src/ios/AliyunPlayerSDK.framework" custom="true" weak="true" />
 
         <header-file src="src/ios/SJPlayerPlugin.h" />
         <source-file src="src/ios/SJPlayerPlugin.m" />
