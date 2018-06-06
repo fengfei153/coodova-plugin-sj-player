@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova-plugin-sj-player"
+    version="1.0.0">
+    <name>SJPlayerPlugin</name>
+    <description>Cordova Plugin SJPlayer</description>
+    <author>FHSJ</author>
+    <license>MIT License</license>
+    <keywords>cordova,sj-player</keywords>
+
+    <js-module src="SJPlayerPlugin.js" name="SJPlayerPlugin">
+        <clobbers target="window.plugins.SJPlayerPlugin" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="SJPlayerPlugin" >
+                <param name="android-package" value="com.fhsjdz.cordova.player.SJPlayerPlugin"/>
+            </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+            <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+        </config-file>
+
+        <lib-file src="src/android/libs/esptouch-v0.3.6.2.jar" />
+
+        <source-file src="src/android/SJPlayerPlugin.java" target-dir="src/com/fhsjdz/cordova/utils" />
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="SJPlayerPlugin">
+                <param name="ios-package" value="SJPlayerPlugin"/>
+            </feature>
+        </config-file>
+        <framework src="CoreGraphics.framework" weak="true"/>
+        <framework src="UIKit.framework" weak="true"/>
+        <framework src="Foundation.framework" weak="true"/>
+        <framework src="SystemConfiguration.framework" weak="true" />
+
+        <header-file src="src/ios/SJPlayerPlugin.h" />
+        <source-file src="src/ios/SJPlayerPlugin.m" />
+    </platform>
+</plugin>

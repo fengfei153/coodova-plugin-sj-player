@@ -1,0 +1,34 @@
+{
+  "name": "cordova-plugin-sj-player",
+  "version": "1.0.0",
+  "author": "FHSJ",
+  "description": "泛海三江开发的阿里播放器Cordova插件",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fengfei153/coodova-plugin-sj-player.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fengfei153/coodova-plugin-sj-player/issues"
+  },
+  "homepage": "https://github.com/fengfei153/coodova-plugin-sj-player#readme",
+  "keywords": [
+    "cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "cordova": {
+    "id": "cordova-plugin-sj-player",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "engines": {
+    "cordovaDependencies": {
+      "6.0.0": {
+        "cordova": ">100"
+      }
+    }
+  },
+  "license": "MIT"
+}
