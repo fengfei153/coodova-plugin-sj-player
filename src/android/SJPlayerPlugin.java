@@ -42,6 +42,7 @@ public class SJPlayerPlugin extends CordovaPlugin {
     private boolean isHorizontal = false;//是否横屏
     
     public AliVcMediaPlayer mPlayer = null;
+    private boolean isInit = false;
     public String url = null;
     private String [] permissions = { Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE };
 
@@ -67,14 +68,12 @@ public class SJPlayerPlugin extends CordovaPlugin {
     }
 
     private void playVideo(JSONArray args, CallbackContext callbackContext){
-    	mainActivity = (MainActivity) cordova.getActivity();
-   	 	try {
-//   	 		ApplicationInfo appInfo = mainActivity.getPackageManager().getApplicationInfo(mainActivity.getPackageName(), PackageManager.GET_META_DATA);  
-//   	 		final String accessKeyId = appInfo.metaData.getString("accessKeyId"); 
-//   	 		final String accessKeySecret = appInfo.metaData.getString("accessKeySecret"); 
-//   	 		final String businessId = appInfo.metaData.getString("businessId");
-
+        mainActivity = (MainActivity) cordova.getActivity();
+        if(!isInit){
             AliVcMediaPlayer.init(mainActivity.getApplicationContext());
+            isInit = true;
+        }
+   	 	try {
             JSONObject jsonObject = args.getJSONObject(0);
             url = jsonObject.getString("url");
             final int videoTop = jsonObject.getInt("top");

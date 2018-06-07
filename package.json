@@ -12,7 +12,7 @@
   },
   "homepage": "https://github.com/fengfei153/coodova-plugin-sj-player#readme",
   "keywords": [
-    "cordova",
+    "ecosystem:cordova",
     "cordova-ios",
     "cordova-android"
   ],
