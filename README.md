@@ -3,7 +3,7 @@
 
 ## Installation
 
-    cordova plugin add https://github.com/fengfei153/coodova-plugin-sj-player.git
+    cordova plugin add https://github.com/fengfei153/cordova-plugin-sj-player.git
 
 ## Methods
 
