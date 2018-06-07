@@ -1,6 +1,7 @@
 package com.fhsjdz.cordova.player;
 
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaActivity;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PermissionHelper;
 import org.apache.cordova.PluginResult;
@@ -12,7 +13,6 @@ import com.alivc.player.AliVcMediaPlayer;
 import com.alivc.player.MediaPlayer;
 
 import android.Manifest;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -35,7 +35,7 @@ public class SJPlayerPlugin extends CordovaPlugin {
     private LinearLayout wrapLayout = null;
     private RelativeLayout contentLayout = null;
     private SurfaceView mSurfaceView = null;
-    private MainActivity mainActivity;
+    private CordovaActivity mainActivity;
     private TextView textView = null;
     private ViewGroup webViewContainer = null;
     private long lastClickTime = 0L;//上次点击时间
@@ -68,7 +68,7 @@ public class SJPlayerPlugin extends CordovaPlugin {
     }
 
     private void playVideo(JSONArray args, CallbackContext callbackContext){
-        mainActivity = (MainActivity) cordova.getActivity();
+        mainActivity = (CordovaActivity) cordova.getActivity();
         if(!isInit){
             AliVcMediaPlayer.init(mainActivity.getApplicationContext());
             isInit = true;
@@ -87,7 +87,6 @@ public class SJPlayerPlugin extends CordovaPlugin {
                     	if(mPlayer == null){
                     		createView(videoTop);
                     	}else{
-                    		mPlayer.releaseVideoSurface();
                         	mPlayer.stop();
                             mPlayer.destroy();
                             mPlayer = null;
@@ -109,7 +108,6 @@ public class SJPlayerPlugin extends CordovaPlugin {
                 @Override
                 public void run(){
                     if (mPlayer != null){
-                    	mPlayer.releaseVideoSurface();
                     	mPlayer.stop();
                         mPlayer.destroy();
                         mPlayer = null;
@@ -174,7 +172,8 @@ public class SJPlayerPlugin extends CordovaPlugin {
             }
             public void surfaceDestroyed(SurfaceHolder holder) {
                 if (mPlayer != null) {
-                    mPlayer.releaseVideoSurface();
+                    mPlayer.stop();
+                    mPlayer.destroy();
                 }
             }
         });
@@ -212,7 +211,7 @@ public class SJPlayerPlugin extends CordovaPlugin {
     	try {
             if (mPlayer == null){
                 // 初始化播放器
-                mPlayer = new AliVcMediaPlayer(mainActivity, mSurfaceView);            
+                mPlayer = new AliVcMediaPlayer(mainActivity, mSurfaceView);
                 //mPlayer.setVideoScalingMode(VideoScalingMode.VIDEO_SCALING_MODE_SCALE_TO_FIT);
                 mPlayer.setPreparedListener(new MyPreparedListener());//播放器就绪事件
                 mPlayer.setFrameInfoListener(new MyFrameInfoListener());
@@ -297,7 +296,7 @@ public class SJPlayerPlugin extends CordovaPlugin {
     }
     
     private String getStringValue(String key){
-    	//return (String) mainActivity.getResources().getString(R.string.app_name); 
+    	//return (String) mainActivity.getResources().getString(R.string.app_name);
     	//初始化
     	try {
     		int id = cordova.getActivity().getResources().getIdentifier(key, "string", cordova.getActivity().getPackageName());
