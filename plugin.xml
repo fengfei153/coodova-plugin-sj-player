@@ -29,7 +29,7 @@
         <lib-file src="src/android/AlivcPlayer-3.4.5.aar" />
         <lib-file src="src/android/AlivcReporter-1.1.aar" />
 
-        <source-file src="src/android/SJPlayerPlugin.java" target-dir="src/com/fhsjdz/cordova/utils" />
+        <source-file src="src/android/SJPlayerPlugin.java" target-dir="src/com/fhsjdz/cordova/player" />
     </platform>
 
     <!-- ios -->
