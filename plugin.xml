@@ -25,6 +25,7 @@
             <uses-permission android:name="android.permission.READ_PHONE_STATE" />
         </config-file>
 
+        <framework src="src/android/alivcplayer.gradle" custom="true" type="gradleReference"/>
         <lib-file src="src/android/AlivcPlayer-3.4.5.aar" />
         <lib-file src="src/android/AlivcReporter-1.1.aar" />
 
