@@ -9,6 +9,10 @@
     <license>MIT License</license>
     <keywords>cordova,sj-player</keywords>
 
+    <engines>
+        <engine name="cordova-android" version=">=6.3.0" />
+    </engines>
+    
     <js-module src="SJPlayerPlugin.js" name="SJPlayerPlugin">
         <clobbers target="window.plugins.SJPlayerPlugin" />
     </js-module>
